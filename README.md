@@ -4,6 +4,7 @@ A Discord bot for translating text between languages using the [MyMemory API](ht
 
 ## Features
 
+- **Flag emoji react-to-translate** — react to any message with a country flag (e.g. 🇫🇷 🇪🇸 🇩🇪 🇯🇵) and the bot replies with the translation
 - Translate text between 60+ languages via `/translate`
 - Detect the language of any text via `/detect`
 - Per-user and per-server default target language
@@ -85,6 +86,68 @@ The MyMemory API enforces daily character limits:
 - **With email** (`MYMEMORY_EMAIL`): 50,000 characters/day
 
 The bot also applies per-second request throttling to avoid overloading the API. Translations are cached in memory (LRU, 1 hour TTL) to minimize redundant requests.
+
+## Deploy to JustRunMy.app
+
+The bot includes a production `Dockerfile` for easy deployment to [JustRunMy.app](https://justrunmy.app/discord-bots).
+
+### Option A: Git Push (recommended)
+
+1. Create a new app on [JustRunMy.app](https://justrunmy.app) and choose **Git** as the deploy method.
+2. Copy the git remote command from the dashboard and run it in this project:
+
+```bash
+git remote add jrma <your-jrma-git-url>
+git push jrma main
+```
+
+3. In the JustRunMy.app dashboard, add your environment variables:
+   - `DISCORD_TOKEN` — your bot token
+   - `CLIENT_ID` — your Discord application client ID
+   - `MYMEMORY_EMAIL` — (optional) email for higher API limits
+
+4. Start the container. Watch the logs until you see "Bot logged in as ...".
+
+Every subsequent `git push jrma main` will redeploy automatically.
+
+### Option B: Zip Upload
+
+1. Build the project locally:
+
+```bash
+npm install && npm run build
+```
+
+2. Zip the project folder (excluding `node_modules`, `.git`, `tests`).
+3. Upload the zip on [JustRunMy.app](https://justrunmy.app) — choose **Node.js** as the runtime.
+4. Set your environment variables in the dashboard and start the app.
+
+### Option C: Docker Push
+
+1. Build the Docker image:
+
+```bash
+docker build -t translation-bot .
+```
+
+2. Tag and push to JustRunMy.app using the command from your dashboard:
+
+```bash
+docker tag translation-bot <your-jrma-registry-url>
+docker push <your-jrma-registry-url>
+```
+
+3. Set environment variables in the dashboard and start.
+
+### Register Slash Commands
+
+After deploying, you still need to register slash commands once. You can do this locally:
+
+```bash
+npm run deploy-commands
+```
+
+Or via the JustRunMy.app web shell for your container.
 
 ## Project Structure
 
