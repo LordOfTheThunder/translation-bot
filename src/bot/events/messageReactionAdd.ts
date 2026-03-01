@@ -57,10 +57,14 @@ export function registerMessageReactionAddEvent(client: Client, services: Servic
         textLength: text.length,
       }, `Flag reaction translation requested: ${emoji} → ${langName}`);
 
-      const result = await services.translation.translate(text, targetLang);
+      // Detect source language first instead of relying on MyMemory autodetect
+      const detected = await services.detection.detect(text);
+      const sourceLang = detected.language;
 
-      // Don't reply if source and target are the same language
-      if (result.sourceLanguage === result.targetLanguage) return;
+      // Don't translate if source and target are the same language
+      if (sourceLang === targetLang) return;
+
+      const result = await services.translation.translate(text, targetLang, sourceLang);
 
       const embed = createTranslationEmbed(result);
       await message.reply({ embeds: [embed] });
