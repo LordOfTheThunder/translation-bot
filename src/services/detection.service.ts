@@ -26,32 +26,7 @@ export class DetectionService {
       }
     }
 
-    return this.detectViaApi(text);
-  }
-
-  private async detectViaApi(text: string): Promise<DetectionResult> {
-    const url = new URL(MYMEMORY_API_URL);
-    url.searchParams.set('q', text);
-    url.searchParams.set('langpair', 'autodetect|en');
-
-    const response = await fetch(url.toString());
-    if (!response.ok) {
-      throw new TranslationError(`MyMemory API error: ${response.status} ${response.statusText}`);
-    }
-
-    const data = (await response.json()) as MyMemoryResponse;
-
-    if (data.responseStatus !== 200) {
-      throw new TranslationError(`MyMemory API returned status ${data.responseStatus}: ${data.responseDetails}`);
-    }
-
-    const detectedLang = data.matches?.[0]?.source ?? 'en';
-    const name = getLanguageName(detectedLang) ?? detectedLang;
-
-    return {
-      language: detectedLang,
-      languageName: name,
-      confidence: data.responseData.match,
-    };
+    // franc couldn't detect — default to English for short/ambiguous text
+    return { language: 'en', languageName: 'English', confidence: 0.5 };
   }
 }
