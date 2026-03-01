@@ -6,12 +6,10 @@ export function createTranslationEmbed(result: TranslationResult): EmbedBuilder 
   return new EmbedBuilder()
     .setColor(EMBED_COLORS.SUCCESS)
     .setTitle('Translation')
+    .setDescription(result.translatedText || '(empty)')
     .addFields(
-      { name: 'Source Language', value: result.sourceLanguage, inline: true },
-      { name: 'Target Language', value: result.targetLanguage, inline: true },
-      { name: 'Translated Text', value: result.translatedText },
-      { name: 'Confidence', value: `${Math.round(result.confidence * 100)}%`, inline: true },
-      { name: 'Cached', value: result.cached ? 'Yes' : 'No', inline: true },
+      { name: 'From', value: result.sourceLanguage || 'auto', inline: true },
+      { name: 'To', value: result.targetLanguage || 'unknown', inline: true },
     )
     .setFooter({ text: BOT_NAME })
     .setTimestamp();
