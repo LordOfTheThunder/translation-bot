@@ -63,24 +63,30 @@ export function registerMessageReactionAddEvent(client: Client, services: Servic
       if (result.sourceLanguage === result.targetLanguage) return;
 
       const embed = createTranslationEmbed(result);
-      await message.reply({ embeds: [embed] });
+      const channel = message.channel;
+      if (!channel || !('send' in channel)) return;
+      await channel.send({ embeds: [embed] });
     } catch (error) {
-      const message = reaction.message;
+      const msg = reaction.message;
 
-      if (error instanceof TextTooLongError) {
-        await message.reply({
-          embeds: [createErrorEmbed('Text Too Long', 'Message is too long to translate (max 500 characters).')],
-        });
-      } else if (error instanceof DailyLimitError) {
-        await message.reply({
-          embeds: [createErrorEmbed('Limit Reached', 'Daily translation limit reached. Resets at midnight UTC.')],
-        });
-      } else if (error instanceof RateLimitError) {
-        await message.reply({
-          embeds: [createErrorEmbed('Rate Limited', 'Translation service is temporarily busy. Try again in a few seconds.')],
-        });
-      } else {
-        services.logger.error({ error }, 'Flag reaction translation failed');
+      try {
+        if (error instanceof TextTooLongError) {
+          await msg.reply({
+            embeds: [createErrorEmbed('Text Too Long', 'Message is too long to translate (max 500 characters).')],
+          });
+        } else if (error instanceof DailyLimitError) {
+          await msg.reply({
+            embeds: [createErrorEmbed('Limit Reached', 'Daily translation limit reached. Resets at midnight UTC.')],
+          });
+        } else if (error instanceof RateLimitError) {
+          await msg.reply({
+            embeds: [createErrorEmbed('Rate Limited', 'Translation service is temporarily busy. Try again in a few seconds.')],
+          });
+        } else {
+          services.logger.error({ err: error, message: error instanceof Error ? error.message : String(error) }, 'Flag reaction translation failed');
+        }
+      } catch (replyError) {
+        services.logger.error({ err: replyError, message: replyError instanceof Error ? replyError.message : String(replyError) }, 'Failed to send error reply');
       }
     }
   });
