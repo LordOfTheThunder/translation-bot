@@ -63,9 +63,7 @@ export function registerMessageReactionAddEvent(client: Client, services: Servic
       if (result.sourceLanguage === result.targetLanguage) return;
 
       const embed = createTranslationEmbed(result);
-      const channel = message.channel;
-      if (!channel || !('send' in channel)) return;
-      await channel.send({ embeds: [embed] });
+      await message.reply({ embeds: [embed] });
     } catch (error) {
       const msg = reaction.message;
 
