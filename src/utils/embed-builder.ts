@@ -1,11 +1,18 @@
 import { EmbedBuilder } from 'discord.js';
+import type { User, PartialUser } from 'discord.js';
 import { EMBED_COLORS, BOT_NAME } from './constants.js';
 import type { TranslationResult, DetectionResult } from '../types/translation.js';
 
-export function createTranslationEmbed(result: TranslationResult): EmbedBuilder {
-  return new EmbedBuilder()
+export function createTranslationEmbed(result: TranslationResult, triggeredBy?: User | PartialUser): EmbedBuilder {
+  const embed = new EmbedBuilder()
     .setColor(EMBED_COLORS.SUCCESS)
     .setDescription(result.translatedText || '(empty)');
+
+  if (triggeredBy) {
+    embed.setFooter({ text: `Translated by ${triggeredBy.username} · ${BOT_NAME}` });
+  }
+
+  return embed;
 }
 
 export function createErrorEmbed(title: string, description: string): EmbedBuilder {
