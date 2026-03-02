@@ -5,14 +5,7 @@ import type { TranslationResult, DetectionResult } from '../types/translation.js
 export function createTranslationEmbed(result: TranslationResult): EmbedBuilder {
   return new EmbedBuilder()
     .setColor(EMBED_COLORS.SUCCESS)
-    .setTitle('Translation')
-    .setDescription(result.translatedText || '(empty)')
-    .addFields(
-      { name: 'From', value: result.sourceLanguage || 'auto', inline: true },
-      { name: 'To', value: result.targetLanguage || 'unknown', inline: true },
-    )
-    .setFooter({ text: BOT_NAME })
-    .setTimestamp();
+    .setDescription(result.translatedText || '(empty)');
 }
 
 export function createErrorEmbed(title: string, description: string): EmbedBuilder {
