@@ -68,7 +68,18 @@ export function registerMessageReactionAddEvent(client: Client, services: Servic
 
       const result = await services.translation.translate(text, targetLang, sourceLang);
 
-      const embed = createTranslationEmbed(result, user);
+      // Resolve server nickname (falls back to global display name, then username)
+      let triggeredByName = user.displayName ?? user.username ?? 'Unknown';
+      if (message.guild) {
+        try {
+          const member = await message.guild.members.fetch(user.id);
+          triggeredByName = member.displayName;
+        } catch {
+          // Fall back to global display name if member fetch fails
+        }
+      }
+
+      const embed = createTranslationEmbed(result, triggeredByName);
       await message.reply({ embeds: [embed] });
     } catch (error) {
       const msg = reaction.message;
