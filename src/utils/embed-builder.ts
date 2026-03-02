@@ -9,7 +9,7 @@ export function createTranslationEmbed(result: TranslationResult, triggeredBy?: 
     .setDescription(result.translatedText || '(empty)');
 
   if (triggeredBy) {
-    embed.setFooter({ text: `Translated by ${triggeredBy.username} · ${BOT_NAME}` });
+    embed.setFooter({ text: `Translated by ${triggeredBy.displayName ?? triggeredBy.username} · ${BOT_NAME}` });
   }
 
   return embed;
