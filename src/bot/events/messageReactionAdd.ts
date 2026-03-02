@@ -59,14 +59,16 @@ export function registerMessageReactionAddEvent(client: Client, services: Servic
 
       // Detect source language first instead of relying on MyMemory autodetect
       const detected = await services.detection.detect(text);
-      const sourceLang = detected.language;
 
-      // Don't translate if source and target are the same language
-      if (sourceLang === targetLang) return;
+      // Only skip same-language translation when detection is confident
+      if (detected.confidence > 0.8 && detected.language === targetLang) return;
+
+      // Use detected source if confident, otherwise let MyMemory autodetect
+      const sourceLang = detected.confidence > 0.8 ? detected.language : undefined;
 
       const result = await services.translation.translate(text, targetLang, sourceLang);
 
-      const embed = createTranslationEmbed(result);
+      const embed = createTranslationEmbed(result, user);
       await message.reply({ embeds: [embed] });
     } catch (error) {
       const msg = reaction.message;

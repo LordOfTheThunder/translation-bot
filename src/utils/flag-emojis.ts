@@ -5,53 +5,130 @@
  */
 
 const COUNTRY_TO_LANGUAGE: Record<string, string> = {
-  US: 'en',
-  GB: 'en',
-  FR: 'fr',
-  ES: 'es',
-  DE: 'de',
-  IT: 'it',
-  PT: 'pt',
-  BR: 'pt',
-  RU: 'ru',
-  CN: 'zh',
-  JP: 'ja',
-  KR: 'ko',
-  SA: 'ar',
-  IN: 'hi',
-  NL: 'nl',
-  PL: 'pl',
-  SE: 'sv',
-  TR: 'tr',
-  VN: 'vi',
-  TH: 'th',
-  UA: 'uk',
-  CZ: 'cs',
-  RO: 'ro',
-  HU: 'hu',
-  FI: 'fi',
-  DK: 'da',
-  NO: 'no',
-  GR: 'el',
-  IL: 'he',
-  ID: 'id',
-  MY: 'ms',
-  BG: 'bg',
-  HR: 'hr',
-  SK: 'sk',
-  SI: 'sl',
-  LT: 'lt',
-  LV: 'lv',
-  EE: 'et',
-  PH: 'tl',
-  IE: 'ga',
-  AT: 'de',
-  CH: 'de',
-  MX: 'es',
-  AR: 'es',
-  CL: 'es',
-  CO: 'es',
-  PE: 'es',
+  // English-speaking
+  US: 'en',  // 🇺🇸 United States
+  GB: 'en',  // 🇬🇧 United Kingdom
+  AU: 'en',  // 🇦🇺 Australia
+  CA: 'en',  // 🇨🇦 Canada
+  NZ: 'en',  // 🇳🇿 New Zealand
+  ZA: 'en',  // 🇿🇦 South Africa
+  NG: 'en',  // 🇳🇬 Nigeria
+
+  // French
+  FR: 'fr',  // 🇫🇷 France
+  BE: 'fr',  // 🇧🇪 Belgium
+
+  // Spanish
+  ES: 'es',  // 🇪🇸 Spain
+  MX: 'es',  // 🇲🇽 Mexico
+  AR: 'es',  // 🇦🇷 Argentina
+  CL: 'es',  // 🇨🇱 Chile
+  CO: 'es',  // 🇨🇴 Colombia
+  PE: 'es',  // 🇵🇪 Peru
+  VE: 'es',  // 🇻🇪 Venezuela
+  EC: 'es',  // 🇪🇨 Ecuador
+  CU: 'es',  // 🇨🇺 Cuba
+  DO: 'es',  // 🇩🇴 Dominican Republic
+  GT: 'es',  // 🇬🇹 Guatemala
+  UY: 'es',  // 🇺🇾 Uruguay
+  PR: 'es',  // 🇵🇷 Puerto Rico
+
+  // German
+  DE: 'de',  // 🇩🇪 Germany
+  AT: 'de',  // 🇦🇹 Austria
+  CH: 'de',  // 🇨🇭 Switzerland
+
+  // Portuguese
+  PT: 'pt',  // 🇵🇹 Portugal
+  BR: 'pt',  // 🇧🇷 Brazil
+  AO: 'pt',  // 🇦🇴 Angola
+  MZ: 'pt',  // 🇲🇿 Mozambique
+
+  // Italian
+  IT: 'it',  // 🇮🇹 Italy
+
+  // Russian
+  RU: 'ru',  // 🇷🇺 Russia
+  BY: 'ru',  // 🇧🇾 Belarus
+
+  // East Asian
+  CN: 'zh',  // 🇨🇳 China
+  TW: 'zh',  // 🇹🇼 Taiwan
+  HK: 'zh',  // 🇭🇰 Hong Kong
+  JP: 'ja',  // 🇯🇵 Japan
+  KR: 'ko',  // 🇰🇷 South Korea
+
+  // South Asian
+  IN: 'hi',  // 🇮🇳 India
+  PK: 'ur',  // 🇵🇰 Pakistan
+  BD: 'bn',  // 🇧🇩 Bangladesh
+  LK: 'si',  // 🇱🇰 Sri Lanka
+  NP: 'ne',  // 🇳🇵 Nepal
+
+  // Arabic-speaking
+  SA: 'ar',  // 🇸🇦 Saudi Arabia
+  EG: 'ar',  // 🇪🇬 Egypt
+  AE: 'ar',  // 🇦🇪 United Arab Emirates
+  MA: 'ar',  // 🇲🇦 Morocco
+  IQ: 'ar',  // 🇮🇶 Iraq
+  JO: 'ar',  // 🇯🇴 Jordan
+  LB: 'ar',  // 🇱🇧 Lebanon
+  TN: 'ar',  // 🇹🇳 Tunisia
+  QA: 'ar',  // 🇶🇦 Qatar
+  KW: 'ar',  // 🇰🇼 Kuwait
+  OM: 'ar',  // 🇴🇲 Oman
+  BH: 'ar',  // 🇧🇭 Bahrain
+
+  // Nordic
+  SE: 'sv',  // 🇸🇪 Sweden
+  DK: 'da',  // 🇩🇰 Denmark
+  NO: 'no',  // 🇳🇴 Norway
+  FI: 'fi',  // 🇫🇮 Finland
+  IS: 'is',  // 🇮🇸 Iceland
+
+  // Other European
+  NL: 'nl',  // 🇳🇱 Netherlands
+  PL: 'pl',  // 🇵🇱 Poland
+  TR: 'tr',  // 🇹🇷 Turkey
+  GR: 'el',  // 🇬🇷 Greece
+  CZ: 'cs',  // 🇨🇿 Czech Republic
+  RO: 'ro',  // 🇷🇴 Romania
+  HU: 'hu',  // 🇭🇺 Hungary
+  UA: 'uk',  // 🇺🇦 Ukraine
+  BG: 'bg',  // 🇧🇬 Bulgaria
+  HR: 'hr',  // 🇭🇷 Croatia
+  SK: 'sk',  // 🇸🇰 Slovakia
+  SI: 'sl',  // 🇸🇮 Slovenia
+  RS: 'sr',  // 🇷🇸 Serbia
+  LT: 'lt',  // 🇱🇹 Lithuania
+  LV: 'lv',  // 🇱🇻 Latvia
+  EE: 'et',  // 🇪🇪 Estonia
+  AL: 'sq',  // 🇦🇱 Albania
+  MK: 'mk',  // 🇲🇰 North Macedonia
+  MT: 'mt',  // 🇲🇹 Malta
+  GE: 'ka',  // 🇬🇪 Georgia
+  CY: 'el',  // 🇨🇾 Cyprus
+
+  // Middle East
+  IL: 'he',  // 🇮🇱 Israel
+  IR: 'fa',  // 🇮🇷 Iran
+
+  // Southeast Asian
+  VN: 'vi',  // 🇻🇳 Vietnam
+  TH: 'th',  // 🇹🇭 Thailand
+  ID: 'id',  // 🇮🇩 Indonesia
+  MY: 'ms',  // 🇲🇾 Malaysia
+  PH: 'tl',  // 🇵🇭 Philippines
+  MM: 'my',  // 🇲🇲 Myanmar
+  KH: 'km',  // 🇰🇭 Cambodia
+
+  // African
+  KE: 'sw',  // 🇰🇪 Kenya
+  TZ: 'sw',  // 🇹🇿 Tanzania
+  ET: 'am',  // 🇪🇹 Ethiopia
+
+  // Celtic
+  IE: 'ga',  // 🇮🇪 Ireland
 };
 
 // Regional indicator A is U+1F1E6

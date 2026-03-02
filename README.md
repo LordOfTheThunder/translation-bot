@@ -78,6 +78,66 @@ npm run dev
 | `/autotranslate` | Enable/disable auto-translation in a channel |
 | `/help` | Show help information |
 
+## Supported Flag Reactions
+
+React to any message with a country flag emoji to translate it. The bot supports the following flags:
+
+| Flag | Country | Language |
+|------|---------|----------|
+| 🇺🇸 🇬🇧 🇦🇺 🇨🇦 🇳🇿 🇿🇦 🇳🇬 | US, UK, Australia, Canada, New Zealand, South Africa, Nigeria | English |
+| 🇫🇷 🇧🇪 | France, Belgium | French |
+| 🇪🇸 🇲🇽 🇦🇷 🇨🇱 🇨🇴 🇵🇪 🇻🇪 🇪🇨 🇨🇺 🇩🇴 🇬🇹 🇺🇾 🇵🇷 | Spain, Mexico, Argentina, Chile, Colombia, Peru, Venezuela, Ecuador, Cuba, Dominican Republic, Guatemala, Uruguay, Puerto Rico | Spanish |
+| 🇩🇪 🇦🇹 🇨🇭 | Germany, Austria, Switzerland | German |
+| 🇵🇹 🇧🇷 🇦🇴 🇲🇿 | Portugal, Brazil, Angola, Mozambique | Portuguese |
+| 🇮🇹 | Italy | Italian |
+| 🇷🇺 🇧🇾 | Russia, Belarus | Russian |
+| 🇨🇳 🇹🇼 🇭🇰 | China, Taiwan, Hong Kong | Chinese |
+| 🇯🇵 | Japan | Japanese |
+| 🇰🇷 | South Korea | Korean |
+| 🇮🇳 | India | Hindi |
+| 🇵🇰 | Pakistan | Urdu |
+| 🇧🇩 | Bangladesh | Bengali |
+| 🇳🇵 | Nepal | Nepali |
+| 🇱🇰 | Sri Lanka | Sinhala |
+| 🇸🇦 🇪🇬 🇦🇪 🇲🇦 🇮🇶 🇯🇴 🇱🇧 🇹🇳 🇶🇦 🇰🇼 🇴🇲 🇧🇭 | Saudi Arabia, Egypt, UAE, Morocco, Iraq, Jordan, Lebanon, Tunisia, Qatar, Kuwait, Oman, Bahrain | Arabic |
+| 🇮🇱 | Israel | Hebrew |
+| 🇮🇷 | Iran | Persian |
+| 🇸🇪 | Sweden | Swedish |
+| 🇩🇰 | Denmark | Danish |
+| 🇳🇴 | Norway | Norwegian |
+| 🇫🇮 | Finland | Finnish |
+| 🇮🇸 | Iceland | Icelandic |
+| 🇳🇱 | Netherlands | Dutch |
+| 🇵🇱 | Poland | Polish |
+| 🇹🇷 | Turkey | Turkish |
+| 🇬🇷 🇨🇾 | Greece, Cyprus | Greek |
+| 🇨🇿 | Czech Republic | Czech |
+| 🇷🇴 | Romania | Romanian |
+| 🇭🇺 | Hungary | Hungarian |
+| 🇺🇦 | Ukraine | Ukrainian |
+| 🇧🇬 | Bulgaria | Bulgarian |
+| 🇭🇷 | Croatia | Croatian |
+| 🇸🇰 | Slovakia | Slovak |
+| 🇸🇮 | Slovenia | Slovenian |
+| 🇷🇸 | Serbia | Serbian |
+| 🇱🇹 | Lithuania | Lithuanian |
+| 🇱🇻 | Latvia | Latvian |
+| 🇪🇪 | Estonia | Estonian |
+| 🇦🇱 | Albania | Albanian |
+| 🇲🇰 | North Macedonia | Macedonian |
+| 🇲🇹 | Malta | Maltese |
+| 🇬🇪 | Georgia | Georgian |
+| 🇻🇳 | Vietnam | Vietnamese |
+| 🇹🇭 | Thailand | Thai |
+| 🇮🇩 | Indonesia | Indonesian |
+| 🇲🇾 | Malaysia | Malay |
+| 🇵🇭 | Philippines | Filipino |
+| 🇲🇲 | Myanmar | Burmese |
+| 🇰🇭 | Cambodia | Khmer |
+| 🇰🇪 🇹🇿 | Kenya, Tanzania | Swahili |
+| 🇪🇹 | Ethiopia | Amharic |
+| 🇮🇪 | Ireland | Irish |
+
 ## Rate Limits
 
 The MyMemory API enforces daily character limits:
